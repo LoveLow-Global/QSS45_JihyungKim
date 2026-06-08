@@ -1,0 +1,103 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+% Theme Choice
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Remove navigation symbols for a cleaner look
+\setbeamertemplate{navigation symbols}{}
+
+\title{K-Pop Agenda Dynamics}
+\subtitle{Time Series Analysis of Topic Diffusion and Sentiment}
+\author{Jihyung Kim}
+\institute{QSS 45 Final Project}
+\date{\today}
+
+\begin{document}
+
+% SLIDE 1: Title
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% SLIDE 2: The Core Question & Headline
+\begin{frame}{The Core Question}
+    \begin{itemize}
+        \item \textbf{Question:} How do different types of K-Pop news diffuse across anonymous online communities?
+        \item \textbf{The Headline Finding:} Controversies are ``fast-burning'' (peaking in $\sim$2.4 days), while professional updates are ``slow-building'' (peaking in $\sim$5.6 days).
+    \end{itemize}
+    
+    \vspace{1cm}
+    \begin{center}
+        \textit{[PUT DIAGRAM OF OVERALL CONCEPT OR RESEARCH FLOW IMAGE IN HERE]}
+    \end{center}
+\end{frame}
+
+% SLIDE 3: Data & Methodology
+\begin{frame}{Data \& Methodology}
+    \textbf{Two-Part Dataset:}
+    \begin{itemize}
+        \item \textbf{The Stimulus:} Top 10 Naver Entertainment articles collected daily (Sep '25 -- Feb '26).
+        \begin{itemize}
+            \item \textit{Note: After topic modeling, only a handful of these articles were used for community reaction analysis. They were selected to exclude spam, and to ensure the number of DCInside posts fit within platform search limits (not too few, and not exceeding 120 pages).}
+        \end{itemize}
+        \item \textbf{The Reaction:} $\sim$13,500 DCInside community posts (Sep '25 -- Apr '26).
+    \end{itemize}
+    
+    \vspace{0.5cm}
+    \textbf{Methods Used:}
+    \begin{itemize}
+        \item \textbf{Hybrid Topic Modeling:} Zero-Shot BERTopic with Sentence-BERT and Okt Tokenizer to cluster agendas based on cosine similarity.
+        \item \textbf{Sentiment Analysis:} HuggingFace NLP (\texttt{bert-base-multilingual}) measured community emotional shift (Before vs. After news).
+    \end{itemize}
+\end{frame}
+
+% SLIDE 4: Finding 1 - Diffusion Speed
+\begin{frame}{Finding 1: Diffusion Speed}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \textbf{Fast-Burning vs. Slow-Building}
+        \begin{itemize}
+            \item \textbf{Controversial Agendas:} Peaks at 2.40 days.
+            \item \textbf{Relational Agendas:} Peaks at 2.71 days.
+            \item \textbf{Professional Agendas:} Peaks at 5.67 days.
+        \end{itemize}
+        \vspace{0.5cm}
+        \textit{Why?} Negativity Bias drives rapid sharing for controversies, while promotional news digests slowly.
+        
+        \column{0.5\textwidth}
+        \begin{center}
+            \textit{[PUT PEAK ATTENTION BAR CHART IMAGE IN HERE]}
+        \end{center}
+    \end{columns}
+\end{frame}
+
+% SLIDE 5: Finding 2 - Sentiment Shift
+\begin{frame}{Finding 2: Community Sentiment Shift}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \textbf{Volatility vs. Cynicism}
+        \begin{itemize}
+            \item \textbf{Professional Agendas:} Uniformly negative shift (-0.25). Shows DCInside's cynical response to corporate PR.
+            \item \textbf{Controversial \& Relational Agendas:} High volatility. Context-dependent (hero vs. villain), leading to massive swings rather than uniform negativity.
+        \end{itemize}
+        
+        \column{0.5\textwidth}
+        \begin{center}
+            \textit{[PUT SENTIMENT SHIFT BOXPLOT IMAGE IN HERE]}
+        \end{center}
+    \end{columns}
+\end{frame}
+
+% SLIDE 6: Conclusion
+\begin{frame}{Conclusion for PR \& Crisis Management}
+    \begin{itemize}
+        \item \textbf{Crisis Window:} Agencies have $< 48$ hours to respond to a controversy before the community narrative fully peaks and solidifies.
+        \item \textbf{Promotional Strategy:} Professional news requires a week-long drip-feed strategy rather than relying on a single press release.
+        \item \textbf{Future Work:} Expanding dataset size and comparing DCInside's cynical baseline against platforms like Twitter.
+    \end{itemize}
+\end{frame}
+
+\end{document}
